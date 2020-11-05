@@ -39,8 +39,8 @@ def samplePackets(packets,timestamps, cap, samplingRate):
     returnedTimeStamps.append(time)
     return returnedPackets, returnedTimeStamps
 
-SAMPLING_RATE = 0.07
-SAMPLING_CAP = 200
+SAMPLING_RATE = 0.02
+SAMPLING_CAP = 2000
 
 # reading csv file
 data = pd.read_csv("data/zoomCall2.csv", sep=",", encoding="ISO-8859-1")
@@ -54,15 +54,15 @@ ListOfProtocolInformation = data.Info.values
 timestamps = plotPacketByProtocol(protocolName="TCP",lineColor="blue",lineWidth=1, cap=SAMPLING_CAP, samplingRate= SAMPLING_RATE)
 plotPacketByProtocol(protocolName="UDP",lineColor="green",lineWidth=1, cap=SAMPLING_CAP, samplingRate= SAMPLING_RATE)
 plotPacketByProtocol(protocolName="WireGuard",lineColor="red",lineWidth=1, cap=SAMPLING_CAP, samplingRate= SAMPLING_RATE)
-plotPacketByProtocol(protocolName="DNS",lineColor="olive",lineWidth=1, cap=SAMPLING_CAP, samplingRate= SAMPLING_RATE)
-
+#plotPacketByProtocol(protocolName="DNS",lineColor="olive",lineWidth=1, cap=SAMPLING_CAP, samplingRate= SAMPLING_RATE)
+#plotPacketByProtocol(protocolName="ARC",lineColor="pink",lineWidth=2, cap=SAMPLING_CAP, samplingRate= SAMPLING_RATE)
 # printing used protocols
 print(UsedProtocols(ListOfProtocols))
 
 plt.ylabel('Number of packets')
 plt.xlabel('Time in seconds')
 plt.legend(loc="upper right")
-plt.title('Packets recorded during a VoIP call')
+plt.title('Packets recorded during a Zoom call')
 plt.margins(0,0.05,tight=True)
 plt.xticks(np.arange(0, int(timestamps[len(timestamps)-1]), 5))
 plt.ylim(bottom=0)
