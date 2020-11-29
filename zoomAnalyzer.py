@@ -115,7 +115,7 @@ def plotGraphByLengthOfPacketsVersusTime(protocols, plotColors):
 
 # plot TCP and UDP packets
 
-# plotGraphByLengthOfPacketsVersusTime(protocols=["TCP","UDP"],plotColors=["blue","green"])
+plotGraphByLengthOfPacketsVersusTime(protocols=["TCP","UDP"],plotColors=["blue","green"])
 # plotGraphByNumberOfPacketsVersusTime(protocols=["TCP","UDP"],plotColors=["blue","green"])
 
 

@@ -2,13 +2,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = pd.read_csv("whatsappCall.csv" ,sep=",")
+data = pd.read_csv("data/whatsappCall.csv", sep=",", encoding="ISO-8859-1")
 ListOfTimeStamps = data.Time.values
 ListOfProtocols = data.Protocol.values
 ListOfInfos = data.Info.values
 
-TCPpackets = map(lambda  p: 1 if "TCP" in p else 0, ListOfProtocols)
-UDPpackets = map(lambda  p: 1 if "UDP" in p or "STUN" in p or "DNS" in p  else 0, ListOfProtocols)
+TCPpackets = list(map(lambda  p: 1 if "TCP" in p else 0, ListOfProtocols))
+UDPpackets = list(map(lambda  p: 1 if "UDP" in p or "STUN" in p or "DNS" in p  else 0, ListOfProtocols))
 
 
 def detectWhenCallsWereEnded():
@@ -49,7 +49,7 @@ def countNumberOfPackets(packets,timestamps, cap):
     for i in range(timestamps.size):
         time = float(timestamps[i])
         protocol = packets[i]
-        if((time - timePrev) >= 0.07):
+        if((time - timePrev) >= 0.1):
             if(count > cap):
                 count = cap
             returnedpackets.append(count)
